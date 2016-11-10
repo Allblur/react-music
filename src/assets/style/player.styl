@@ -1,0 +1,122 @@
+
+@font-face 
+	font-family "iconfont"
+	src url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.eot?t=1478753378273')
+	src url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.eot?t=1478753378273#iefix') format('embedded-opentype'),
+	url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.woff?t=1478753378273') format('woff'),
+	url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.ttf?t=1478753378273') format('truetype'),
+	url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.svg?t=1478753378273#iconfont') format('svg')
+
+.iconfont
+	font-family "iconfont" !important
+	font-size 16px
+	font-style normal
+	-webkit-font-smoothing antialiased
+	-webkit-text-stroke-width 0.2px
+	-moz-osx-font-smoothing grayscale
+.icon-songlist:before
+	content "\e600"
+.icon-next:before
+	content "\e608"
+.icon-prev:before
+	content "\e650"
+.icon-random:before
+	content "\e603"
+.icon-sloop:before
+	content "\e604"
+.icon-paused:before
+	content "\e605"
+.icon-playing:before
+	content "\e606"
+.icon-loop:before
+	content "\e607"
+.player-wrap
+	position fixed
+	width 100vw
+	height 60px
+	background-color rgba(2,2,2,.9)
+	background-image -moz-gradient(linear, 0 0, 0 100%, from(#2e2e2e), to(#0f0f0f))
+	background-image -ms-gradient(linear, 0 0, 0 100%, from(#2e2e2e), to(#0f0f0f))
+	background-image -o-gradient(linear, 0 0, 0 100%, from(#2e2e2e), to(#0f0f0f))
+	background-image -webkit-gradient(linear, 0 0, 0 100%, from(#2e2e2e), to(#0f0f0f))
+	background-image gradient(linear, 0 0, 0 100%, from(#2e2e2e), to(#0f0f0f))
+	background-image -webkit-linear-gradient(top, #3a3a3a, #0f0f0f)
+	border 1px solid #121212
+	bottom 0
+	left 0
+	.player
+		width 960px
+		margin 0 auto
+		position relative
+		::-webkit-scrollbar 
+			width 14px  
+			height 14px
+		::-webkit-scrollbar-track,::-webkit-scrollbar-thumb
+			border-radius 999px
+			border 5px solid transparent
+		::-webkit-scrollbar-track
+			box-shadow 1px 1px 5px rgba(0,0,0,.2) inset
+		::-webkit-scrollbar-thumb
+			min-height 20px 
+			background-clip content-box
+			box-shadow 0 0 0 5px rgba(0,0,0,.2) inset
+		::-webkit-scrollbar-corner
+			background transparent
+		.songandlrc
+			width 960px
+			position absolute
+			bottom 64px
+			left 0
+			overflow hidden
+			color #e1e1e1
+			.sl-hd
+				height 40px
+				line-height 40px
+				background-color #090909
+				border-radius 5px 5px 0 0
+				.slhd-fl
+					width 600px
+					float left
+					span
+						padding-left 1em
+				.slhd-fr
+					margin-left 600px
+					height 40px
+					text-align center
+					white-space nowrap
+					text-overflow ellipsis
+					overflow hidden
+			.player-info
+				background-color rgba(10,7,7,.9)
+			.player-song-list
+				height 240px
+				width 600px
+				float left
+				overflow-x hidden
+				overflow-y auto
+			.player-lyric
+				height 240px
+				width 360px
+				margin-left 600px
+				overflow-x hidden
+				overflow-y auto
+				p
+					text-align center
+					line-height 2.5em
+					color #a9a9a9
+		.player-btn
+			height 60px
+			a,span
+				color #e9e9e9
+.player-song-list
+	ul
+		li
+			height 32px
+			line-height 32px
+			padding 0 1em
+			white-space nowrap
+			text-overflow ellipsis
+			overflow hidden
+			cursor pointer
+			a,span
+				color #e9e9e9

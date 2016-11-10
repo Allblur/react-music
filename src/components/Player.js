@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import Lyric from './Lyric'
 import { mstime } from '../utils/utils'
+import '../assets/style/player.styl'
 
 class Player extends Component {
 
@@ -18,7 +19,7 @@ class Player extends Component {
 		this.setStime = this.setStime.bind(this)
 		this.actionEnded = this.actionEnded.bind(this)
 		this.actionLoadedmetadata = this.actionLoadedmetadata.bind(this)
-		this.showLyric = this.showLyric.bind(this)
+		this.showSonglist = this.showSonglist.bind(this)
 		this.getLyrics = this.getLyrics.bind(this)
 		this.state = {
 			playerState: false,
@@ -28,7 +29,7 @@ class Player extends Component {
 			currentTime: 0,
 			activeSongname: '',
 			lyric: '',
-			showLyric: false
+			showSonglist: false
 		}
 	}
 
@@ -90,13 +91,7 @@ class Player extends Component {
 		})
 		setTimeout(() => {
 			ReactDOM.findDOMNode(this.refs.audio).play()
-			if (this.state.showLyric) {
-				this.getLyrics(this.props.playerData.playerList[this.props.playerData.playerIndex].id)
-			} else {
-				this.setState({
-		        	lyric: ''
-		        })
-			}
+			this.getLyrics(this.props.playerData.playerList[this.props.playerData.playerIndex].id)
 		},800)
 	}
 
@@ -223,20 +218,20 @@ class Player extends Component {
 	renderSonglist(playerList) {
 		return playerList.map((elem, key) => {
 			return (
-				<li className={this.setSondInfoClass(key)} key={key}>
-					<a className="to-play-btn" onClick={this.actionClickPlay.bind(this,key)}>播放</a>
-					<a className="song-info" onClick={this.toSongdetailPage.bind(this, elem.id)}>{elem.name} - {elem.artists[0].name}</a>
+				<li className={this.setSondInfoClass(key)} key={key} onClick={this.actionClickPlay.bind(this,key)}>
+					<span className="to-play-btn">播放</span>
+					<span className="song-info">{elem.name} - {elem.artists[0].name}</span>
 				</li>
 			)
 		})
 	}
 
-	showLyric() {
-		if (!this.state.lyric) {
+	showSonglist() {
+		if (!this.state.showSonglist) {
 			this.getLyrics(this.props.playerData.playerList[this.props.playerData.playerIndex].id)
 		}
 		this.setState({
-			showLyric: !this.state.showLyric
+			showSonglist: !this.state.showSonglist
 		})
 	}
 
@@ -250,12 +245,14 @@ class Player extends Component {
 		})
 	}
 
-    renderLyric() {
-    	if (!this.state.showLyric) return false
-    	return (
-			<Lyric currentTime={this.state.currentTime} lyric={this.state.lyric} />
-		)
-    }
+	setPmStyle() {
+		return `iconfont icon-${this.props.playerData.playerModel}`
+	}
+
+	setPStyle() {
+		const playerStatus = this.state.playerState ? 'playing' : 'paused'
+		return `iconfont icon-${playerStatus}`
+	}
 
 	renderPlayer() {
 		const { playerList, playerIndex } = this.props.playerData
@@ -267,30 +264,51 @@ class Player extends Component {
 		if (playerList && playerList.length > 0) {
 			return (
 				<div className="player">
-					<div className="player-lyric">
-						{this.renderLyric()}
-					</div>
-					<div className="player-song-list">
-						<ul>
-							{this.renderSonglist(playerList)}
-						</ul>
+					<div className={this.state.showSonglist ? "songandlrc" : "hide"}>
+						<div className="sl-hd">
+							<div className="slhd-fl">
+								<span>播放列表({playerList.length})</span>
+							</div>
+							<div className="slhd-fr">
+								<span>{playerList[playerIndex].name}</span>
+							</div>
+						</div>
+						<div className="player-info">
+							<div className="player-song-list">
+								<ul>
+									{this.renderSonglist(playerList)}
+								</ul>
+							</div>
+							<div className="player-lyric">
+								<Lyric
+									currentTime={this.state.currentTime}
+									lyric={this.state.lyric} 
+								/>
+							</div>
+						</div>
 					</div>
 					<div className="player-bar">
 						<div className="player-barhr" style={style}></div>
 					</div>
 					<div className="player-btn">
 						<div className="btn-div">
-							<a className="playPrev" onClick={this.actionPrev}>上一首</a>
-							<a className={this.setPlayState()} onClick={this.togglePlay}>暂停</a>
-							<a className="playNext" onClick={this.actionNext}>下一首</a>
-							<a className={this.setPlayModelType()} onClick={this.setPlayModel}>
-								{this.props.playerData.playerModel}
+							<a className="playPrev" onClick={this.actionPrev}><i className="iconfont icon-prev"></i></a>
+							<a className={this.setPlayState()} onClick={this.togglePlay}>
+								<i className={this.setPStyle()}></i>
 							</a>
-							<a className="song-lyric" onClick={this.showLyric}>
-								歌词
+							<a className="playNext" onClick={this.actionNext}><i className="iconfont icon-next"></i></a>
+							<a className={this.setPlayModelType()} onClick={this.setPlayModel}>
+								<i className={this.setPmStyle()}></i>
+							</a>
+							<a className="song-lyric" onClick={this.showSonglist}>
+								<i className="iconfont icon-songlist"></i>
 							</a>
 							<span>{this.state.songcurrentTime} / {this.state.songduration}</span>
-							<span>{this.state.activeSongname}</span>
+							<span>
+								<a onClick={this.toSongdetailPage.bind(this, playerList[playerIndex].id)}>
+									{this.state.activeSongname}
+								</a>
+							</span>
 						</div>
 					</div>
 				</div>
