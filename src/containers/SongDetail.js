@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from 'actions/player'
-import Lyric from '../components/Lyric'
-import Comments from '../components/Comments'
+import Lyric from 'components/Lyric'
+import Comments from 'components/Comments'
 
 @connect(
 	state => state.songDetail,

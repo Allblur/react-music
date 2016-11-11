@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { useRoutes } from 'react-router'
 import { connect } from 'react-redux'
 import actions from 'actions'
-import PlaylistList from '../../components/PlaylistList'
+import PlaylistList from 'components/PlaylistList'
 
 @connect(
 	state => state.pageDetail,

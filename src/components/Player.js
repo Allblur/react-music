@@ -23,6 +23,7 @@ class Player extends Component {
 		this.getLyrics = this.getLyrics.bind(this)
 		this.state = {
 			playerState: false,
+			playerStateFrist: true,
 			songduration: '00:00', //音频时长
 			songcurrentTime: '00:00', //播放时间
 			progressValues: '0px', //播放进度条值 0px
@@ -90,9 +91,11 @@ class Player extends Component {
 			playerState: true
 		})
 		setTimeout(() => {
-			ReactDOM.findDOMNode(this.refs.audio).play()
-			this.getLyrics(this.props.playerData.playerList[this.props.playerData.playerIndex].id)
-		},800)
+			if (this.props.playerData.playerList.length > 0) {
+				ReactDOM.findDOMNode(this.refs.audio).play()
+				this.getLyrics(this.props.playerData.playerList[this.props.playerData.playerIndex].id)
+			}
+		},500)
 	}
 
 	togglePlay() {
@@ -108,6 +111,9 @@ class Player extends Component {
 				playerState: false
 			})
 		}
+		this.setState({
+			playerStateFrist: false
+		})
 	}
 
 	actionTimeupdate(e) {
@@ -219,7 +225,7 @@ class Player extends Component {
 		return playerList.map((elem, key) => {
 			return (
 				<li className={this.setSondInfoClass(key)} key={key} onClick={this.actionClickPlay.bind(this,key)}>
-					<span className="to-play-btn">播放</span>
+					<span className="to-play-btn"></span>
 					<span className="song-info">{elem.name} - {elem.artists[0].name}</span>
 				</li>
 			)
@@ -250,19 +256,20 @@ class Player extends Component {
 	}
 
 	setPStyle() {
-		const playerStatus = this.state.playerState ? 'playing' : 'paused'
+		const playerStatus = this.state.playerState ? 'playing mp' : 'paused mp'
+		if (this.state.playerStateFrist) {
+			return "iconfont icon-paused mp"
+		}
 		return `iconfont icon-${playerStatus}`
 	}
 
 	renderPlayer() {
 		const { playerList, playerIndex } = this.props.playerData
 		const style = {
-			width: this.state.progressValues,
-			height: '3px',
-			backgroundColor: '#f30'
+			width: this.state.progressValues
 		}
-		if (playerList && playerList.length > 0) {
-			return (
+		return (
+			<div  className="player-wrap">
 				<div className="player">
 					<div className={this.state.showSonglist ? "songandlrc" : "hide"}>
 						<div className="sl-hd">
@@ -287,42 +294,58 @@ class Player extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="player-bar">
-						<div className="player-barhr" style={style}></div>
-					</div>
 					<div className="player-btn">
-						<div className="btn-div">
-							<a className="playPrev" onClick={this.actionPrev}><i className="iconfont icon-prev"></i></a>
-							<a className={this.setPlayState()} onClick={this.togglePlay}>
-								<i className={this.setPStyle()}></i>
-							</a>
-							<a className="playNext" onClick={this.actionNext}><i className="iconfont icon-next"></i></a>
-							<a className={this.setPlayModelType()} onClick={this.setPlayModel}>
-								<i className={this.setPmStyle()}></i>
-							</a>
-							<a className="song-lyric" onClick={this.showSonglist}>
-								<i className="iconfont icon-songlist"></i>
-							</a>
-							<span>{this.state.songcurrentTime} / {this.state.songduration}</span>
-							<span>
-								<a onClick={this.toSongdetailPage.bind(this, playerList[playerIndex].id)}>
-									{this.state.activeSongname}
+						<div className="player-btnwp">
+							<div className="player-control">
+								<a className="playPrev" onClick={this.actionPrev}><i className="iconfont icon-prev"></i></a>
+								<a className={this.setPlayState()} onClick={this.togglePlay}>
+									<i className={this.setPStyle()}></i>
 								</a>
-							</span>
+								<a className="playNext" onClick={this.actionNext}><i className="iconfont icon-next"></i></a>
+							</div>
+							<div className="player-song-info">
+								<div className="song-album">
+									<img src={playerList[playerIndex].album.picUrl} />
+								</div>
+								<div className="player-in">
+									<div className="player-baras">
+										<p onClick={this.toSongdetailPage.bind(this, playerList[playerIndex].id)}>
+											{this.state.activeSongname}
+										</p>
+									</div>
+									<div className="player-barw">
+										<div className="player-sc">
+											<span>{this.state.songcurrentTime}</span>
+										</div>
+										<div className="player-bar">
+											<div className="player-barhr" style={style}></div>
+										</div>
+										<div className="player-sd">
+											<span>{this.state.songduration}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="player-menu">
+								<a className={this.setPlayModelType()} onClick={this.setPlayModel}>
+									<i className={this.setPmStyle()}></i>
+								</a>
+								<a className="song-lyric" onClick={this.showSonglist}>
+									<i className="iconfont icon-songlist"></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			)
-		}
-		return (
-			<div className="loading">加载中...</div>
+			</div>
 		)
 	}
 
 	render() {
+		const { playerList } = this.props.playerData
 		return (
-			<div className="player-wrap">
-				{this.renderPlayer()}
+			<div>
+				{playerList && playerList.length > 0 ? this.renderPlayer() : ''}
 				<audio src={this.setAudioUrl()} ref="audio" id="audio" preload="metadata" className="hide"></audio>
 			</div>
 		)

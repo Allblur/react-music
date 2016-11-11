@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from 'actions/home'
-import PlaylistCard from '../components/PlaylistCard'
+import PlaylistCard from 'components/PlaylistCard'
 
 @connect(
 	state => state.home,
@@ -78,9 +78,19 @@ class Home extends Component {
 	renderPlaylistCard() {
 		const plArr = this.props.topPlaylistData.list instanceof Array ? this.props.topPlaylistData.list : []
 		if (plArr.length === 0) {
-			return (
-				<li className="loading">loading</li>
-			)
+			return [1,2,3].map((elem, key) => {
+				return (
+					<li className="loading mtpx30 playlist-card" key={key}>
+						<div className="waiting">
+							<div className="rect1"></div>
+							<div className="rect2"></div>
+							<div className="rect3"></div>
+							<div className="rect4"></div>
+							<div className="rect5"></div>
+						</div>
+					</li>
+				)
+			})
 		}
 		return plArr.map((item, key) => {
 			return(
@@ -101,7 +111,7 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div className='wrapper'>
+			<div className='pab65 wrapper'>
 				<div className="playlist-category">
 					<ul>
 						{this.renderActegory()}
