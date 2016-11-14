@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from 'actions/home'
+import playerActions from 'actions/player'
 import PlaylistCard from 'components/PlaylistCard'
 
 @connect(
-	state => state.home,
+	state => ({
+		...state.home,
+		...state.player
+	}),
 	actions
 )
 class Home extends Component {
@@ -77,6 +81,7 @@ class Home extends Component {
 
 	renderPlaylistCard() {
 		const plArr = this.props.topPlaylistData.list instanceof Array ? this.props.topPlaylistData.list : []
+		const playlistId = this.props.playerData.playerList.length > 0 ? (+this.props.playerData.playerList[0].playlistId) : 0
 		if (plArr.length === 0) {
 			return [1,2,3].map((elem, key) => {
 				return (
@@ -103,7 +108,10 @@ class Home extends Component {
 					shareCount={item.shareCount}
 					tags={item.tags}
 					id={item.id}
-					key={key}
+					getPlayerlist={this.props.getPlayerlist}
+					setindex={this.props.setindex}
+					playlistId={playlistId}
+					key={item.id}
 				/>
 			)
 		})

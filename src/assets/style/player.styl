@@ -1,18 +1,3 @@
-@font-face 
-	font-family "iconfont"
-	src url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.eot?t=1478753378273')
-	src url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.eot?t=1478753378273#iefix') format('embedded-opentype'),
-	url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.woff?t=1478753378273') format('woff'),
-	url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.ttf?t=1478753378273') format('truetype'),
-	url('//at.alicdn.com/t/font_b3mvxdr24ubit3xr.svg?t=1478753378273#iconfont') format('svg')
-
-.iconfont
-	font-family "iconfont" !important
-	font-size 16px
-	font-style normal
-	-webkit-font-smoothing antialiased
-	-webkit-text-stroke-width 0.2px
-	-moz-osx-font-smoothing grayscale
 .icon-songlist:before
 	content "\e600"
 .icon-next:before
@@ -43,6 +28,7 @@
 	border 1px solid #121212
 	bottom 0
 	left 0
+	z-index 9999
 	.player
 		width 960px
 		margin 0 auto
@@ -54,11 +40,11 @@
 			border-radius 999px
 			border 5px solid transparent
 		::-webkit-scrollbar-track
-			box-shadow 1px 1px 5px rgba(0,0,0,.2) inset
+			box-shadow 1px 1px 5px rgba(0,0,0,.95) inset
 		::-webkit-scrollbar-thumb
 			min-height 20px 
 			background-clip content-box
-			box-shadow 0 0 0 5px rgba(0,0,0,.2) inset
+			box-shadow 0 0 0 5px rgba(110,110,110,.9) inset
 		::-webkit-scrollbar-corner
 			background transparent
 		.songandlrc

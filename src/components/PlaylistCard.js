@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { tsnumb } from '../utils/utils'
+import '../assets/style/playlistCard.styl'
 
 class PlaylistCard extends Component {
 	static propTypes = {
@@ -10,11 +11,45 @@ class PlaylistCard extends Component {
 		subscribedCount: PropTypes.number.isRequired,
 		shareCount: PropTypes.number.isRequired,
 		tags: PropTypes.array.isRequired,
-		id: PropTypes.number.isRequired
+		id: PropTypes.number.isRequired,
+		getPlayerlist: PropTypes.func.isRequired,
+		setindex: PropTypes.func.isRequired,
+		playlistId: PropTypes.number.isRequired
 	}
 
 	constructor(props) {
-		super(props)
+		super(props),
+		this.playThatPlaylist = this.playThatPlaylist.bind(this)
+	}
+
+	playThatPlaylist() {
+		this.props.getPlayerlist(`/musiclist/${this.props.id}/`)
+		this.props.setindex(0)
+	}
+
+	renderIcons() {
+		const id = this.props.id
+		const playlistId = this.props.playlistId
+		if (id === playlistId) {
+			return (
+				<div className="playing-icon">
+					<div className="icons-group">
+						<div className="icons-group-div">
+							<i className="icons1"></i>
+							<i className="icons2"></i>
+							<i className="icons3"></i>
+							<i className="icons4"></i>
+							<i className="icons5"></i>
+						</div>
+					</div>
+				</div>
+			)
+		}
+		return (
+			<span className="play-icon" onClick={this.playThatPlaylist}>
+				<i className="icons"></i>
+			</span>
+		)
 	}
 
 	render() {
@@ -26,6 +61,7 @@ class PlaylistCard extends Component {
 						<span>
 							<img src={coverImgUrl} alt={name}/>
 						</span>
+						{this.renderIcons()}
 					</div>
 					<div className="card-body">
 						<h4>{name}</h4>

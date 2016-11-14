@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
+import SearchForm from 'components/SearchForm'
 
 class Header extends Component {
 	static propTypes = {
@@ -32,6 +33,7 @@ class Header extends Component {
 					<div className="logo">
 						<span onClick={this.props.onlogoClickAction}>musictagram</span>
 					</div>
+					<SearchForm />
 					<ul className="header-nav">
 						{menuItem}
 					</ul>

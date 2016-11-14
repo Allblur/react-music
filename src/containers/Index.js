@@ -30,7 +30,7 @@ import playerActions from 'actions/player'
 		getSonginfo: playerActions.getSonginfo
 	}
 )
-class Home extends Component {
+class Index extends Component {
 	componentWillMount() {
 		this.props.queryMenuList()
 		this.props.getPlayerlist("/musiclist/77149051/")
@@ -48,4 +48,4 @@ class Home extends Component {
 	}
 }
 
-export default Home
+export default Index
