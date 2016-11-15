@@ -5,7 +5,8 @@ import SearchForm from 'components/SearchForm'
 class Header extends Component {
 	static propTypes = {
 		path: PropTypes.string.isRequired,
-		onlogoClickAction: PropTypes.func.isRequired
+		onlogoClickAction: PropTypes.func.isRequired,
+		push: PropTypes.func.isRequired
 	}
 
 	constructor(props) {
@@ -33,7 +34,7 @@ class Header extends Component {
 					<div className="logo">
 						<span onClick={this.props.onlogoClickAction}>musictagram</span>
 					</div>
-					<SearchForm />
+					<SearchForm {...this.props} />
 					<ul className="header-nav">
 						{menuItem}
 					</ul>

@@ -1,4 +1,4 @@
-# vue-musicbox
+# react-music
 
 A musicbox app build with react and redux.
 

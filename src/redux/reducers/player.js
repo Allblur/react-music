@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import * as PLAYER_TYPES from '../actions/action_types'
+import * as PLAYER_TYPES from 'actions/action_types'
 
 const reducer = handleActions({
 	[PLAYER_TYPES.SETLIST]: (state, action) => ({

@@ -6,6 +6,7 @@ import Player from 'components/Player'
 import Header from 'components/Header'
 import menuActions from 'actions/menus'
 import playerActions from 'actions/player'
+import searchActions from 'actions/search'
 
 @connect(
 	state => ({
@@ -27,7 +28,9 @@ import playerActions from 'actions/player'
 		songdetail: playerActions.songdetail,
 		getSongLyric: playerActions.getSongLyric,
 		getJsondata: playerActions.getJsondata,
-		getSonginfo: playerActions.getSonginfo
+		getSonginfo: playerActions.getSonginfo,
+		getSearchResult: searchActions.getSearchResult,
+		searchKw: searchActions.searchKw
 	}
 )
 class Index extends Component {
@@ -40,7 +43,14 @@ class Index extends Component {
 		const menuList = this.props.list
 		return (
 			<div className='body'>
-				<Header navItem={menuList} path={this.props.currentPath} onlogoClickAction={this.props.actionGoHome} router={this.props.route} />
+				<Header
+					navItem={menuList}
+					path={this.props.currentPath}
+					onlogoClickAction={this.props.actionGoHome}
+					router={this.props.route}
+					push={this.props.history.push}
+					getSearchResult={this.props.getSearchResult}
+				/>
 				{this.props.children}
 				<Player {...this.props} />
 			</div>

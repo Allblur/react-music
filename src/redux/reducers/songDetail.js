@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { SONGINFO } from '../actions/action_types'
+import { SONGINFO } from 'actions/action_types'
 
 const reducer = handleActions({
 	[SONGINFO]: (state, action) => ({
