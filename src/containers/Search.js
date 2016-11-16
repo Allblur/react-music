@@ -12,22 +12,28 @@ class Search extends Component {
 	constructor(props) {
 		super(props),
 		this.state = {
-			searchType: 2
+			type: 2,
+			kws: ''
 		}
 	}
 
 	componentWillMount() {
-		if (!this.props.searchData.searchResult) {
-			this.getSearchResults(2)
-		}
+		//this.getSearchResults(2)
 	}
 
-	getSearchResults(t) {
+
+	componentDidUpdate() {
+		/*if (this.props.location.query.kw === this.state.kws) return false
+		this.getSearchResults(2)*/
+	}
+
+	toSearch(t) {
 		const kw = this.props.location.query.kw
-		this.props.getSearchResult('/sreach/', {params: {w: kw, t: t}})
 		this.setState({
-			searchType: t
+			type: t,
+			kws: kw
 		})
+		this.props.history.push(`/search/s?kw=${kw}&t=${t}`)
 	}
 
 	renderStype() {
@@ -38,60 +44,29 @@ class Search extends Component {
 			{t: 3, val: '歌手'}
 		]
 		return type.map((elem, key) => {
-			if (this.state.searchType === elem.t) {
+			if (this.state.type === elem.t) {
 				return (
 					<li key={elem.t} className='active'>
-						<span onClick={this.getSearchResults.bind(this,elem.t)}>{elem.val}</span>
+						<span onClick={this.toSearch.bind(this,elem.t)}>{elem.val}</span>
 					</li>
 				)
 			}
 			return (
 				<li key={elem.t}>
-					<span onClick={this.getSearchResults.bind(this,elem.t)}>{elem.val}</span>
+					<span onClick={this.toSearch.bind(this,elem.t)}>{elem.val}</span>
 				</li>
 			)
 		})
 	}
 
-	renderResult(result) {
-		if (result && result.length > 0) {
-			return result.slice(0, 10).map((elem, key) => {
-				return (
-					<li key={elem.id} className="sr-list">{elem.name}</li>
-				)
-			})
-		}
-		return (
-			<li className="sr-error">
-				<p>很抱歉，未能找到相关搜索结果！</p>
-			</li>
-		)
-	}
-
-	renderPagination(result) {
-		let paginaArr = []
-		if (result && result.length > 0) {
-			const n = Math.ceil(result.length / 10)
-			for (var i = 0; i < n; i++) {
-				paginaArr[i] = i+1
-			}
-		}
-		return paginaArr.map((el, key) => {
-			return (
-				<li key={key}><span>{el}</span></li>
-			)
-		})
-	}
-
 	render() {
-		const result = this.props.searchData.searchResult.list
 		return (
 			<div className="wrapper search-wrap">
 				<div className="search-sf">
 					<SearchForm
 						getSearchResult={this.props.getSearchResult}
 						push={this.props.history.push}
-						val={this.props.location.query.kw}
+						val={this.state.kws}
 					/>
 				</div>
 				<div className="result-wrap">
@@ -99,14 +74,7 @@ class Search extends Component {
 						{this.renderStype()}
 					</ul>
 					<div className="result-bd">
-						<div className="result-item">
-							<ul>{this.renderResult(result)}</ul>
-						</div>
-						<div className="pagination">
-							<ul>
-								{this.renderPagination(result)}
-							</ul>
-						</div>
+						{this.props.children}
 					</div>
 				</div>
 			</div>

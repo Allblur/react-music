@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 class SearchForm extends Component {
 	static propTypes = {
 		searchKw: PropTypes.func,
-		getSearchResult: PropTypes.func.isRequired,
+		getSearchResult: PropTypes.func,
 		push: PropTypes.func.isRequired,
 		val: PropTypes.string
 	}
@@ -17,8 +17,8 @@ class SearchForm extends Component {
 	actionGoSearch() {
 		const kw = ReactDOM.findDOMNode(this.refs.searchKeywords).value
 		//this.props.searchKw(kw)
-		this.props.getSearchResult('/sreach/', {params: {w: kw, t: 2}})
-		this.props.push(`/search?kw=${kw}`)
+		//this.props.getSearchResult('/sreach/', {params: {w: kw, t: 2}})
+		this.props.push(`/search/s?kw=${kw}&t=2`)
 	}
 
 	render() {
