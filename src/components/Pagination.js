@@ -1,41 +1,40 @@
 import React, { Component, PropTypes } from 'react'
+import SearchResultArtist from './SearchResultArtist'
+import SearchResultSong from './SearchResultSong'
+import SearchResultAlbum from './SearchResultAlbum'
+import SearchResultPlaylist from './SearchResultPlaylist'
 
 class Pagination extends Component {
 	static propTypes = {
-		type: PropTypes.number.isRequired,
+		t: PropTypes.number.isRequired,
 		result: PropTypes.array.isRequired,
 		offset: PropTypes.number
 	}
 
 	constructor(props) {
 		super(props),
-		this.renderPagination = this.renderPagination.bind(this)
-		this.renderResult = this.renderResult.bind(this)
 		this.state = {
 			paginationData: [],
 			pnEleArr: [],
 			onNumber: 0,
-			t: 2
+			t: this.props.t,
 		}
 	}
 
-	componentDidmount() {
-		this.changeState(0)
-	}
-
-	componentDidUpdate() {
-		if (this.state.t === this.props.type) return false
-		this.changeState(this.props.type)
-	}
-
 	renderResult() {
-		const paginationData = this.state.paginationData.length > 0 ? this.state.paginationData : this.setPagination().paginationDataArr[0]
-		if (paginationData && paginationData.length > 0) {
-			return paginationData.map((elem, key) => {
-				return (
-					<li key={elem.id} className="sr-list">{elem.name}</li>
-				)
-			})
+		const paginationData = this.state.paginationData
+		if (paginationData.length > 0) {
+			switch(this.props.t){
+				case 1:
+					return (<SearchResultSong paginationData={paginationData} />)
+				case 2:
+					return (<SearchResultPlaylist paginationData={paginationData} />)
+				case 3:
+					return (<SearchResultArtist paginationData={paginationData} />)
+				case 4:
+					return (<SearchResultAlbum paginationData={paginationData} />)
+			}
+
 		}
 		return (
 			<li className="sr-error">
@@ -45,7 +44,7 @@ class Pagination extends Component {
 	}
 
 	setPagination() {
-		const {result, offset} =  this.props
+		const {result, offset} = this.props
 		let pnEleArr = []
 		let paginationData = []
 		if (result && result.length > 0) {
@@ -78,17 +77,14 @@ class Pagination extends Component {
 		this.setState({
 			paginationData: paginationDataArr[n],
 			onNumber: n,
-			t: this.props.type
+			t: this.props.t
 		})
 	}
 
 	render() {
-		console.log('t=>'+this.props.type)
 		return (
 			<div>
-				<div className="result-item">
-					<ul>{this.renderResult()}</ul>
-				</div>
+				{this.renderResult()}
 				<div className="pagination">
 					<ul>{this.renderPagination()}</ul>
 				</div>

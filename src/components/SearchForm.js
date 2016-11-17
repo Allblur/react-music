@@ -16,9 +16,7 @@ class SearchForm extends Component {
 
 	actionGoSearch() {
 		const kw = ReactDOM.findDOMNode(this.refs.searchKeywords).value
-		//this.props.searchKw(kw)
-		//this.props.getSearchResult('/sreach/', {params: {w: kw, t: 2}})
-		this.props.push(`/search/s?kw=${kw}&t=2`)
+		this.props.push(`/search?kw=${kw}&t=2`)
 	}
 
 	render() {

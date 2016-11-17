@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from 'actions/home'
-import playerActions from 'actions/player'
 import PlaylistCard from 'components/PlaylistCard'
 
 @connect(

@@ -1,50 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actions from 'actions/search'
+import searchActions from 'actions/search'
 import SearchForm from 'components/SearchForm'
+import SearchResult from 'components/SearchResult'
 import '../assets/style/search.styl'
 
 @connect(
 	state => state.search,
-	actions
+	searchActions
 )
 class Search extends Component {
 	constructor(props) {
-		super(props),
-		this.state = {
-			type: 2,
-			kws: ''
-		}
-	}
-
-	componentWillMount() {
-		//this.getSearchResults(2)
-	}
-
-
-	componentDidUpdate() {
-		/*if (this.props.location.query.kw === this.state.kws) return false
-		this.getSearchResults(2)*/
+		super(props)
 	}
 
 	toSearch(t) {
-		const kw = this.props.location.query.kw
-		this.setState({
-			type: t,
-			kws: kw
-		})
-		this.props.history.push(`/search/s?kw=${kw}&t=${t}`)
+		const {kw} = this.props.location.query
+		this.props.history.push(`/search?kw=${kw}&t=${t}`)
 	}
-
 	renderStype() {
 		const type = [
-			{t: 2, val: '歌单'},
-			{t: 1, val: '单曲'},
-			{t: 4, val: '专辑'},
-			{t: 3, val: '歌手'}
+			{t: '2', val: '歌单'},
+			{t: '1', val: '单曲'},
+			{t: '4', val: '专辑'},
+			{t: '3', val: '歌手'}
 		]
 		return type.map((elem, key) => {
-			if (this.state.type === elem.t) {
+			if (this.props.location.query.t === elem.t) {
 				return (
 					<li key={elem.t} className='active'>
 						<span onClick={this.toSearch.bind(this,elem.t)}>{elem.val}</span>
@@ -60,13 +42,13 @@ class Search extends Component {
 	}
 
 	render() {
+		const {kw, t} = this.props.location.query
 		return (
 			<div className="wrapper search-wrap">
 				<div className="search-sf">
 					<SearchForm
-						getSearchResult={this.props.getSearchResult}
 						push={this.props.history.push}
-						val={this.state.kws}
+						val={kw}
 					/>
 				</div>
 				<div className="result-wrap">
@@ -74,7 +56,7 @@ class Search extends Component {
 						{this.renderStype()}
 					</ul>
 					<div className="result-bd">
-						{this.props.children}
+						<SearchResult {...this.props} kw={kw} t={Number(t)} />
 					</div>
 				</div>
 			</div>
