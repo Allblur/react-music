@@ -21,10 +21,16 @@ class Pagination extends Component {
 		}
 	}
 
+
+	componentDidUpdate() {
+		if (this.state.t === this.props.t) return false
+		this.changeState(0)
+	}
+
 	renderResult() {
 		const paginationData = this.state.paginationData
 		if (paginationData.length > 0) {
-			switch(this.props.t){
+			switch(this.props.t) {
 				case 1:
 					return (<SearchResultSong paginationData={paginationData} />)
 				case 2:
