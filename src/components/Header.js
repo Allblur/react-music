@@ -35,9 +35,6 @@ class Header extends Component {
 						<span onClick={this.props.onlogoClickAction}>musictagram</span>
 					</div>
 					<SearchForm {...this.props} />
-					<ul className="header-nav">
-						{menuItem}
-					</ul>
 				</div>
 			</div>
 		)
