@@ -16,6 +16,8 @@ class Search extends Component {
 
 	toSearch(t) {
 		const {kw} = this.props.location.query
+		const res = {list: []}
+		this.props.searchResult(res)
 		this.props.history.push(`/search?kw=${kw}&t=${t}`)
 	}
 	renderStype() {
@@ -45,18 +47,12 @@ class Search extends Component {
 		const {kw, t} = this.props.location.query
 		return (
 			<div className="wrapper search-wrap">
-				<div className="search-sf">
-					<SearchForm
-						push={this.props.history.push}
-						val={kw}
-					/>
-				</div>
 				<div className="result-wrap">
 					<ul className="result-hd">
 						{this.renderStype()}
 					</ul>
 					<div className="result-bd">
-						<SearchResult {...this.props} kw={kw} t={Number(t)} />
+						<SearchResult {...this.props} />
 					</div>
 				</div>
 			</div>

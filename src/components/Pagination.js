@@ -90,10 +90,14 @@ class Pagination extends Component {
 	render() {
 		return (
 			<div>
-				{this.renderResult()}
 				<div className="pagination">
 					<ul>{this.renderPagination()}</ul>
 				</div>
+				<Pagination
+					result={searchData.searchResult.list ? searchData.searchResult.list : []}
+					t={t}
+					offset={n}
+				/>
 			</div>
 		)
 	}

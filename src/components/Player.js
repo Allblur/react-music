@@ -62,8 +62,8 @@ class Player extends Component {
 	}
 
 	actionKeyDown(e) {
-	    const keyCode = e.keyCode || e.which;
-	    const isInsideInput = e.target.tagName.toLowerCase().match(/input|textarea/);
+	    const keyCode = e.keyCode || e.which
+	    const isInsideInput = e.target.tagName.toLowerCase().match(/input|textarea/)
 	    if (isInsideInput) {
 	      	return false
 	    }

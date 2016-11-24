@@ -12,11 +12,28 @@ class SearchForm extends Component {
 	constructor(props) {
 		super(props),
 		this.actionGoSearch = this.actionGoSearch.bind(this)
+		this.actionKeyDown = this.actionKeyDown.bind(this)
+	}
+
+	componentDidMount() {
+		document.addEventListener('keydown',this.actionKeyDown,false)
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('loadedmetadata', this.actionKeyDown, false)
 	}
 
 	actionGoSearch() {
 		const kw = ReactDOM.findDOMNode(this.refs.searchKeywords).value
+		if (kw === '') return false
 		this.props.push(`/search?kw=${kw}&t=2`)
+	}
+
+	actionKeyDown(e) {
+	    const keyCode = e.keyCode || e.which
+	    if (keyCode === 13) {
+	      	this.actionGoSearch(e)
+	    }
 	}
 
 	render() {

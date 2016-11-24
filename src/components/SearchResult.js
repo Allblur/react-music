@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+import SearchResultArtist from './SearchResultArtist'
+import SearchResultSong from './SearchResultSong'
+import SearchResultAlbum from './SearchResultAlbum'
+import SearchResultPlaylist from './SearchResultPlaylist'
 import Pagination from './Pagination'
 
 class SearchResult extends Component {
-	static propTypes = {
-		t: PropTypes.number.isRequired,
-		kw: PropTypes.string.isRequired
-	}
-
 	constructor(props) {
 		super(props),
 		this.state = {
@@ -16,16 +15,19 @@ class SearchResult extends Component {
 	}
 
 	componentWillMount() {
+		const res = {list: []}
+		this.props.searchResult(res)
 		this.getSearchResults()
 	}
 
 	componentDidUpdate() {
-		if (this.state.t === this.props.t && this.state.kw === this.props.kw) return false
+		const {t ,kw} = this.props.location.query
+		if (this.state.t === t && this.state.kw === kw) return false
 		this.getSearchResults()
 	}
 
 	getSearchResults() {
-		const {kw, t} = this.props
+		const {kw, t} = this.props.location.query
 		const {getSearchResult} = this.props
 		getSearchResult('/sreach/', {params: {w: kw, t: t}})
 		this.setState({
@@ -34,17 +36,43 @@ class SearchResult extends Component {
 		})
 	}
 
+	renderResult() {
+		const list = this.props.searchData.searchResult.list
+		const t = this.props.location.query.t
+		if (list && list instanceof Array) {
+			if (list.length === 0) {
+				return (
+					<li className="sr-error">
+						<p>加载中...</p>
+					</li>
+				)
+			} else {
+				switch(t) {
+					case '1':
+						return (<SearchResultSong paginationData={list.slice(0, 20)} />)
+					case '2':
+						return (<SearchResultPlaylist paginationData={list.slice(0, 20)} />)
+					case '3':
+						return (<SearchResultArtist paginationData={list.slice(0, 20)} />)
+					case '4':
+						return (<SearchResultAlbum paginationData={list.slice(0, 20)} />)
+				}
+			}
+		}
+		return (
+			<li className="sr-error">
+				<p>很抱歉，未能找到相关搜索结果！</p>
+			</li>
+		)
+	}
+
 	render() {
-		const {t} = this.props
+		const {t} = this.props.location.query.t
 		const {searchData} = this.props
 		const n = 15
 		return (
 			<div className="result-body">
-				<Pagination
-					result={searchData.searchResult.list ? searchData.searchResult.list : []}
-					t={t}
-					offset={n}
-				/>
+				{this.renderResult()}
 			</div>
 		)
 	}
