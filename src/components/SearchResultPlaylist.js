@@ -6,6 +6,11 @@ class SearchResultPlaylist extends Component {
 		super(props)
 	}
 
+	toPlaylist(pId) {
+		this.props.getPlayerlist(`/musiclist/${pId}/`)
+		this.props.setindex(0)
+	}
+
 	render() {
 		return (
 			<div className="result-item">
@@ -13,7 +18,7 @@ class SearchResultPlaylist extends Component {
 					{this.props.paginationData.map((v, k) => {
 						return (
 							<div className="ri-list" key={v.id}>
-								<span className="to-play-plailist"><i className="iconfont icon-paused"></i></span>
+								<span className="to-play-plailist" onClick={this.toPlaylist.bind(this,v.id)}><i className="iconfont icon-paused"></i></span>
 								<span className="cover-imgurl"><img src={v.coverImgUrl} alt="歌单封面" width="60" /></span>
 								<span className="playlist-name">{v.name}</span>
 								<span className="playlist-trackcount">{v.trackCount}首</span>

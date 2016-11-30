@@ -40,7 +40,10 @@ class SearchForm extends Component {
 		return (
 			<div className="search-form">
 				<div className="search-wrap">
-					<input type="text" defaultValue={this.props.val ? this.props.val : ''} ref="searchKeywords" placeholder="单曲/歌手/专辑/歌单"/>
+					<input type="text"
+						defaultValue={this.props.val ? this.props.val : ''}
+						ref="searchKeywords" placeholder="单曲/歌手/专辑/歌单"
+					/>
 					<span className="search-btn" onClick={this.actionGoSearch}>搜索</span>
 				</div>
 			</div>

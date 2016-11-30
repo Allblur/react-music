@@ -39,6 +39,14 @@ class SearchResult extends Component {
 	renderResult() {
 		const list = this.props.searchData.searchResult.list
 		const t = this.props.location.query.t
+		const {
+			setlist,
+			setindex,
+			setmodel,
+			songinfo,
+			getPlayerlist,
+			getSonginfo
+		} = this.props
 		if (list && list instanceof Array) {
 			if (list.length === 0) {
 				return (
@@ -49,13 +57,51 @@ class SearchResult extends Component {
 			} else {
 				switch(t) {
 					case '1':
-						return (<SearchResultSong paginationData={list.slice(0, 20)} />)
+						return (
+							<SearchResultSong
+								paginationData={list.slice(0, 20)}
+								setlist={setlist}
+								setindex={setindex}
+								setmodel={setmodel}
+								songinfo={songinfo}
+								getPlayerlist={getPlayerlist}
+								getSonginfo={getSonginfo}
+							/>
+						)
 					case '2':
-						return (<SearchResultPlaylist paginationData={list.slice(0, 20)} />)
+						return (
+							<SearchResultPlaylist
+								paginationData={list.slice(0, 20)}
+								setlist={setlist}
+								setindex={setindex}
+								setmodel={setmodel}
+								songinfo={songinfo}
+								getPlayerlist={getPlayerlist}
+								getSonginfo={getSonginfo}
+							/>
+						)
 					case '3':
-						return (<SearchResultArtist paginationData={list.slice(0, 20)} />)
+						return (
+							<SearchResultArtist
+								paginationData={list.slice(0, 20)}
+								setlist={setlist}
+								setindex={setindex}
+								setmodel={setmodel}
+								getPlayerlist={getPlayerlist}
+								getSonginfo={getSonginfo}
+							/>
+						)
 					case '4':
-						return (<SearchResultAlbum paginationData={list.slice(0, 20)} />)
+						return (
+							<SearchResultAlbum
+								paginationData={list.slice(0, 20)}
+								setlist={setlist}
+								setindex={setindex}
+								setmodel={setmodel}
+								getPlayerlist={getPlayerlist}
+								getSonginfo={getSonginfo}
+							/>
+						)
 				}
 			}
 		}
