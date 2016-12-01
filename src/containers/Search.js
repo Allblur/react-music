@@ -17,6 +17,7 @@ class Search extends Component {
 	toSearch(t) {
 		const {kw} = this.props.location.query
 		const res = {list: []}
+		localStorage.setItem("searchType", t)
 		this.props.searchResult(res)
 		this.props.history.push(`/search?kw=${kw}&t=${t}`)
 	}

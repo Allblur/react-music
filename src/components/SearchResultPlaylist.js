@@ -1,33 +1,48 @@
 import React, { Component, PropTypes } from 'react'
-import { tsnumb } from '../utils/utils'
+import Pagination from './Pagination'
+import SearchResultItems from './SearchResultItems'
 
 class SearchResultPlaylist extends Component {
 	constructor(props) {
-		super(props)
+		super(props),
+		this.actionPageClick = this.actionPageClick.bind(this)
+		this.changePlaylist = this.changePlaylist.bind(this)
+		this.state = {
+			pageCount: 0,
+			offset: 15,
+			data: []
+		}
 	}
 
-	toPlaylist(pId) {
+	componentWillMount() {
+		this.actionPageClick(0)
+	}
+
+	changePlaylist(pId) {
 		this.props.getPlayerlist(`/musiclist/${pId}/`)
 		this.props.setindex(0)
+	}
+
+	actionPageClick(n) {
+		this.setState({
+			pageCount: Math.ceil(this.props.paginationData.length / this.state.offset),
+			data: this.props.paginationData.slice(n * this.state.offset, (n + 1) * this.state.offset)
+		})
 	}
 
 	render() {
 		return (
 			<div className="result-item">
-				<div className="ri-div">
-					{this.props.paginationData.map((v, k) => {
-						return (
-							<div className="ri-list" key={v.id}>
-								<span className="to-play-plailist" onClick={this.toPlaylist.bind(this,v.id)}><i className="iconfont icon-paused"></i></span>
-								<span className="cover-imgurl"><img src={v.coverImgUrl} alt="歌单封面" width="60" /></span>
-								<span className="playlist-name">{v.name}</span>
-								<span className="playlist-trackcount">{v.trackCount}首</span>
-								<span className="creator-name">by&nbsp;&nbsp;<i>{v.creator.nickname}</i></span>
-								<span className="playlist-count">收藏：{tsnumb(v.bookCount)}&nbsp;&nbsp;播放：{tsnumb(v.playCount)}</span>
-							</div>
-						)
-					})}
-				</div>
+				<SearchResultItems
+					paginationData={this.state.data}
+					changePlaylist={this.changePlaylist}
+					t={this.props.t}
+				/>
+				<Pagination
+					pageCount={this.state.pageCount}
+					offset={this.state.offset}
+					clickCallback={this.actionPageClick}
+				/>
 			</div>
 		)
 	}

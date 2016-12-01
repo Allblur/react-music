@@ -1,26 +1,48 @@
 import React, { Component, PropTypes } from 'react'
-import { mstime } from '../utils/utils'
+import Pagination from './Pagination'
+import SearchResultItems from './SearchResultItems'
 
 class SearchResultSong extends Component {
 	constructor(props) {
-		super(props)
+		super(props),
+		this.actionPageClick = this.actionPageClick.bind(this)
+		this.changePlaylist = this.changePlaylist.bind(this)
+		this.state = {
+			pageCount: 0,
+			offset: 15,
+			data: []
+		}
+	}
+
+	componentWillMount() {
+		this.actionPageClick(0)
+	}
+
+	changePlaylist(pId) {
+		/*this.props.getPlayerlist(`/musiclist/${pId}/`)
+		this.props.setindex(0)*/
+	}
+
+	actionPageClick(n) {
+		this.setState({
+			pageCount: Math.ceil(this.props.paginationData.length / this.state.offset),
+			data: this.props.paginationData.slice(n * this.state.offset, (n + 1) * this.state.offset)
+		})
 	}
 
 	render() {
 		return (
 			<div className="result-item">
-				<div className="ri-div">
-				{this.props.paginationData.map((v, k) => {
-					return (
-						<div className="ri-list ri-song-list" key={v.id}>
-							<span className="to-play-plailist"><i className="iconfont icon-paused"></i></span>
-							<span className="playlist-name">{v.name}</span>
-							<span className="album-name">{v.album.name}</span>
-							<span className="song-duration">{mstime(v.duration)}</span>
-						</div>
-					)
-				})}
-				</div>
+				<SearchResultItems
+					changePlaylist={this.changePlaylist}
+					paginationData={this.state.data}
+					t={this.props.t}
+				/>
+				<Pagination
+					pageCount={this.state.pageCount}
+					offset={this.state.offset}
+					clickCallback={this.actionPageClick}
+				/>
 			</div>
 		)
 	}

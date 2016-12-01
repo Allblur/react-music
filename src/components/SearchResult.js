@@ -66,18 +66,20 @@ class SearchResult extends Component {
 								songinfo={songinfo}
 								getPlayerlist={getPlayerlist}
 								getSonginfo={getSonginfo}
+								t={t}
 							/>
 						)
 					case '2':
 						return (
 							<SearchResultPlaylist
-								paginationData={list.slice(0, 20)}
+								paginationData={list}
 								setlist={setlist}
 								setindex={setindex}
 								setmodel={setmodel}
 								songinfo={songinfo}
 								getPlayerlist={getPlayerlist}
 								getSonginfo={getSonginfo}
+								t={t}
 							/>
 						)
 					case '3':

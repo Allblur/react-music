@@ -25,8 +25,9 @@ class SearchForm extends Component {
 
 	actionGoSearch() {
 		const kw = ReactDOM.findDOMNode(this.refs.searchKeywords).value
+		const t = localStorage.getItem("searchType") || 2
 		if (kw === '') return false
-		this.props.push(`/search?kw=${kw}&t=2`)
+		this.props.push(`/search?kw=${kw}&t=${t}`)
 	}
 
 	actionKeyDown(e) {

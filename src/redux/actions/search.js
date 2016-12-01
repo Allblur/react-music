@@ -1,14 +1,16 @@
 import { createActions } from 'redux-actions'
-import { SEARCH_KW, SEARCH_RESULT } from './action_types'
+import { SEARCH_KW, SEARCH_RESULT, SEARCH_TYPE } from './action_types'
 import player from './player'
 import fetchApi from '../../utils/fetch'
 
 const {
 	searchKw,
-	searchResult
+	searchResult,
+	searchType,
 } = createActions(
 	SEARCH_KW,
-	SEARCH_RESULT
+	SEARCH_RESULT,
+	SEARCH_TYPE
 )
 
 const {
@@ -21,12 +23,13 @@ const {
 	getPlayerlist,
 	getSongLyric,
 	getSonginfo,
-	getComments,
+	getComments
 } = player
 
 export default {
 	searchKw,
 	searchResult,
+	searchType,
 	setlist,
 	setindex,
 	setmodel,
@@ -46,5 +49,5 @@ export default {
 		return dispatch => {
 			return fetchApi(url, args).then(json => Promise.resolve(json))
 		}
-	},
+	}
 }
