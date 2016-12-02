@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import PlayIcon from './PlayIcon'
 import { tsnumb } from '../utils/utils'
 import '../assets/style/playlistCard.styl'
 
@@ -14,6 +15,7 @@ class PlaylistCard extends Component {
 		id: PropTypes.number.isRequired,
 		getPlayerlist: PropTypes.func.isRequired,
 		setindex: PropTypes.func.isRequired,
+		actionLink: PropTypes.func.isRequired,
 		playlistId: PropTypes.number.isRequired
 	}
 
@@ -27,31 +29,6 @@ class PlaylistCard extends Component {
 		this.props.setindex(0)
 	}
 
-	renderIcons() {
-		const id = this.props.id
-		const playlistId = this.props.playlistId
-		if (id === playlistId) {
-			return (
-				<div className="playing-icon">
-					<div className="icons-group">
-						<div className="icons-group-div">
-							<i className="icons1"></i>
-							<i className="icons2"></i>
-							<i className="icons3"></i>
-							<i className="icons4"></i>
-							<i className="icons5"></i>
-						</div>
-					</div>
-				</div>
-			)
-		}
-		return (
-			<span className="play-icon" onClick={this.playThatPlaylist}>
-				<i className="icons"></i>
-			</span>
-		)
-	}
-
 	render() {
 		const { coverImgUrl, name, description, playCount, subscribedCount, shareCount, tags, id } = this.props
 		return (
@@ -61,10 +38,14 @@ class PlaylistCard extends Component {
 						<span>
 							<img src={coverImgUrl} alt={name}/>
 						</span>
-						{this.renderIcons()}
+						<PlayIcon
+							id={this.props.id}
+							playlistId={this.props.playlistId}
+							actionClick={this.playThatPlaylist}
+						/>
 					</div>
 					<div className="card-body">
-						<h4>{name}</h4>
+						<h4><a onClick={this.props.actionLink}>{name}</a></h4>
 						<p>{description}</p>
 						<div className="card-ft">
 							<div className="counts">

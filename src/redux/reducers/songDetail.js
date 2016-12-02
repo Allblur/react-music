@@ -1,12 +1,12 @@
 import { handleActions } from 'redux-actions'
-import { SONGINFO } from 'actions/action_types'
+import { SONG_INFO } from 'actions/action_types'
 
 const reducer = handleActions({
-	[SONGINFO]: (state, action) => ({
-		songInfo: Object.assign({}, action.payload)
+	[SONG_INFO]: (state, action) => ({
+		songInfos: Object.assign({}, state.songInfos, action.payload)
 	})
 }, {
-	songInfo: Object.assign({},{ code: 100 })
+	songInfos: Object.assign({},{ code: 100 })
 })
 
 export default reducer

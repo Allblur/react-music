@@ -43,7 +43,7 @@ class SearchResult extends Component {
 			setlist,
 			setindex,
 			setmodel,
-			songinfo,
+			songInfo,
 			getPlayerlist,
 			getSonginfo
 		} = this.props
@@ -63,9 +63,10 @@ class SearchResult extends Component {
 								setlist={setlist}
 								setindex={setindex}
 								setmodel={setmodel}
-								songinfo={songinfo}
+								songInfo={songInfo}
 								getPlayerlist={getPlayerlist}
 								getSonginfo={getSonginfo}
+								history={this.props.history}
 								t={t}
 							/>
 						)
@@ -76,9 +77,10 @@ class SearchResult extends Component {
 								setlist={setlist}
 								setindex={setindex}
 								setmodel={setmodel}
-								songinfo={songinfo}
+								songInfo={songInfo}
 								getPlayerlist={getPlayerlist}
 								getSonginfo={getSonginfo}
+								history={this.props.history}
 								t={t}
 							/>
 						)

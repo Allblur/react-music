@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './redux/stores'
 import './assets/style/style.styl'
-import App from './containers/App'
+import App from './containers/app'
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)

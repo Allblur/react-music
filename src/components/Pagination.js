@@ -14,18 +14,17 @@ class Pagination extends Component {
 		}
 	}
 
-	setPagination() {
+	setArr() {
 		let pnEleArr = []
 		let i = 0
 		while(i < this.props.pageCount) {
-			pnEleArr[i] = i + 1
-			i++
+			pnEleArr[i] = ++i
 		}
 		return pnEleArr
 	}
 
 	renderPagination() {
-		return this.setPagination().map((el, key) => {
+		return this.setArr().map((el, key) => {
 			return (
 				<li key={key} className={this.state.onNumber === key ? 'active' : ''}>
 					<span onClick={this.changeState.bind(this, key)}>{el}</span>

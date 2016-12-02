@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actions from 'actions/player'
+import actions from 'actions/songDetail'
 import Lyric from 'components/Lyric'
 import Comments from 'components/Comments'
 
@@ -10,25 +10,36 @@ import Comments from 'components/Comments'
 )
 class SongDetail extends Component {
 	constructor(props) {
-		super(props)
+		super(props),
+		this.state = {
+			songId: ''
+		}
 	}
 
 	componentWillMount() {
-		this.props.getSonginfo(`/getsonginfo/${this.props.params.songId}/`)
+		this.getInfo()
 	}
 
 	componentDidUpdate() {
-		if (this.props.songInfo.id == this.props.params.songId) return false
-		this.props.getSonginfo(`/getsonginfo/${this.props.params.songId}/`)
+		if (this.state.songId === this.props.params.songId) return false
+		this.getInfo()
+	}
+
+	getInfo() {
+		this.setState({
+			songId: this.props.params.songId
+		}, () => {
+			this.props.getSonginfo(`/getsonginfo/${this.props.params.songId}/`)
+		})
 	}
 
 	render() {
-		if (this.props.songInfo.code) {
+		if (this.props.songInfos.code) {
 			return (
 				<div className='loading'>加载中...</div>
 			)
 		}
-		const songInfo = this.props.songInfo
+		const songInfo = this.props.songInfos
 		return (
 			<div className='detailWrap'>
 				<Lyric lyric={songInfo.lyrs.lrc.lyric} />

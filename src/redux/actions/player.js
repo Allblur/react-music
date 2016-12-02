@@ -6,14 +6,14 @@ const {
 	setindex,
 	setmodel,
 	getlyric,
-	songinfo,
+	songInfo,
 	comments
 } = createActions(
 	PLAYER_TYPES.SETLIST,
 	PLAYER_TYPES.SETINDEX,
 	PLAYER_TYPES.SETMODEL,
 	PLAYER_TYPES.GETLYRIC,
-	PLAYER_TYPES.SONGINFO,
+	PLAYER_TYPES.SONG_INFO,
 	PLAYER_TYPES.COMMENTS,
 )
 export default {
@@ -21,7 +21,7 @@ export default {
 	setindex,
 	setmodel,
 	getlyric,
-	songinfo,
+	songInfo,
 	comments,
 	getPlayerlist(url,args) {
 		return dispatch => {
@@ -40,7 +40,7 @@ export default {
 	},
 	getSonginfo(url) {
 		return dispatch => {
-			return fetchApi(url).then(json => dispatch(songinfo(json)))
+			return fetchApi(url).then(json => dispatch(songInfo(json)))
 		}
 	},
 	getComments(url) {

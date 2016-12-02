@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router'
-import routers from '../../routers'
+import routers from '../routers'
 
 class App extends Component {
 	render() {

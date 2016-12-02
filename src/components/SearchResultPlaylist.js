@@ -34,6 +34,7 @@ class SearchResultPlaylist extends Component {
 		return (
 			<div className="result-item">
 				<SearchResultItems
+					{...this.props}
 					paginationData={this.state.data}
 					changePlaylist={this.changePlaylist}
 					t={this.props.t}

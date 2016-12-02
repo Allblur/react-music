@@ -6,6 +6,10 @@ class SearchResultItems extends Component {
 		super(props)
 	}
 
+	toDetailPage(url) {
+		this.props.history.push(url)
+	}
+
 	render() {
 		if (this.props.t === '1') {
 			return (
@@ -16,7 +20,9 @@ class SearchResultItems extends Component {
 								<span className="to-play-plailist">
 									<i className="iconfont icon-paused"></i>
 								</span>
-								<span className="playlist-name">{v.name}</span>
+								<span className="playlist-name">
+									<a onClick={this.toDetailPage.bind(this,`/songdetail/${v.id}`)}>{v.name}</a>
+								</span>
 								<span className="album-name">{v.album.name}</span>
 								<span className="song-duration">{mstime(v.duration)}</span>
 							</div>
@@ -34,7 +40,9 @@ class SearchResultItems extends Component {
 								<i className="iconfont icon-paused"></i>
 							</span>
 							<span className="cover-imgurl"><img src={v.coverImgUrl} alt="歌单封面" width="60" /></span>
-							<span className="playlist-name">{v.name}</span>
+							<span className="playlist-name">
+								<a onClick={this.toDetailPage.bind(this,`/playlistdetail/${v.id}`)}>{v.name}</a>
+							</span>
 							<span className="playlist-trackcount">{v.trackCount}首</span>
 							<span className="creator-name">by&nbsp;&nbsp;<i>{v.creator.nickname}</i></span>
 							<span className="playlist-count">收藏：{tsnumb(v.bookCount)}&nbsp;&nbsp;播放：{tsnumb(v.playCount)}</span>

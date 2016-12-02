@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-class PlaylistList extends Component {
+class PlaylistItem extends Component {
 	static propTypes = {
 		picUrl: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
@@ -14,14 +14,14 @@ class PlaylistList extends Component {
 	render() {
 		const { picUrl, name, artName } = this.props
 		return (
-			<li className='msuic-info'>
+			<li className='playlist-info'>
 				<img src={picUrl} alt={name} width='60' height='60' />
-				<div className="m-info">
-					<h4 className="m-name">{name} - {artName}</h4>
+				<div className="p-info">
+					<h4 className="p-name">{name} - {artName}</h4>
 				</div>
 			</li>
 		)
 	}
 }
 
-export default PlaylistList
+export default PlaylistItem
