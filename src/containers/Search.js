@@ -14,7 +14,7 @@ class Search extends Component {
 		super(props)
 	}
 
-	toSearch(t) {
+	actionSearch(t) {
 		const {kw} = this.props.location.query
 		const res = {list: []}
 		localStorage.setItem("searchType", t)
@@ -32,13 +32,13 @@ class Search extends Component {
 			if (this.props.location.query.t === elem.t) {
 				return (
 					<li key={elem.t} className='active'>
-						<span onClick={this.toSearch.bind(this,elem.t)}>{elem.val}</span>
+						<span onClick={this.actionSearch.bind(this,elem.t)}>{elem.val}</span>
 					</li>
 				)
 			}
 			return (
 				<li key={elem.t}>
-					<span onClick={this.toSearch.bind(this,elem.t)}>{elem.val}</span>
+					<span onClick={this.actionSearch.bind(this,elem.t)}>{elem.val}</span>
 				</li>
 			)
 		})
