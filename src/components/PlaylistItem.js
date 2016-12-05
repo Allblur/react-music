@@ -1,10 +1,14 @@
 import React, { Component, PropTypes } from 'react'
+import { mstime } from '../utils/utils'
 
 class PlaylistItem extends Component {
 	static propTypes = {
 		picUrl: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
-		artName: PropTypes.string.isRequired
+		artName: PropTypes.string.isRequired,
+		playlistId: PropTypes.number.isRequired,
+		id: PropTypes.number.isRequired,
+		duration: PropTypes.number.isRequired
 	}
 
 	constructor(props) {
@@ -12,12 +16,14 @@ class PlaylistItem extends Component {
 	}
 
 	render() {
-		const { picUrl, name, artName } = this.props
+		const {picUrl, name, artName, playlistId, albumName, duration, id} = this.props
 		return (
 			<li className='playlist-info'>
-				<img src={picUrl} alt={name} width='60' height='60' />
 				<div className="p-info">
-					<h4 className="p-name">{name} - {artName}</h4>
+					<span className="span p-play" id={id}>播放</span>
+					<span className="span p-name">{name} - {artName}</span>
+					<span className="span p-albumName">{albumName}</span>
+					<span className="span p-duration">{mstime(duration)}</span>
 				</div>
 			</li>
 		)

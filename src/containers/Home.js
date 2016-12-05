@@ -112,19 +112,21 @@ class Home extends Component {
 	}
 
 	componentWillMount() {
+		this.props.topplaylist({})
 		this.props.getTopPlaylist('/topplaylists/?offset=15&limit=15')
 	}
 
 	toggleCategory(name) {
-		this.props.topplaylist({})
-		this.props.getTopPlaylist(`/topplaylists/?category=${name}&offset=15&limit=15`)
 		this.setState({
 			activeCategoryName: name
+		}, () => {
+			this.props.topplaylist({})
+			this.props.getTopPlaylist(`/topplaylists/?category=${name}&offset=15&limit=15`)
 		})
 	}
 
 	actionLink(id) {
-		const url = `/playlistdetail/${id}`
+		const url = `/playlist/${id}`
 		this.props.history.push(url)
 	}
 

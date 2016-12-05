@@ -1,12 +1,18 @@
 import { handleActions } from 'redux-actions'
-import { SONG_INFO } from 'actions/action_types'
+import { SONG_INFOS, GET_LYRICS, GET_COMMENTS } from 'actions/action_types'
 
 const reducer = handleActions({
-	[SONG_INFO]: (state, action) => ({
-		songInfos: Object.assign({}, state.songInfos, action.payload)
+	[SONG_INFOS]: (state, action) => ({
+		songDetail: Object.assign({}, state.songDetail, {songinfos: action.payload})
+	}),
+	[GET_LYRICS]: (state, action) => ({
+		songDetail: Object.assign({}, state.songDetail, {lyric: action.payload})
+	}),
+	[GET_COMMENTS]: (state, action) => ({
+		songDetail: Object.assign({}, state.songDetail, {songcomments: action.payload})
 	})
 }, {
-	songInfos: Object.assign({},{ code: 100 })
+	songDetail: Object.assign({},{songinfos:{code: 100 }, lyric:{code: 100 }, songcomments:{code: 100 }})
 })
 
 export default reducer

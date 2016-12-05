@@ -218,7 +218,7 @@ class Player extends Component {
 	}
 
 	toSongdetailPage(songId) {
-		this.props.history.push(`/songDetail/${songId}`)
+		this.props.history.push(`/song/${songId}`)
 	}
 
 	renderSonglist(playerList) {

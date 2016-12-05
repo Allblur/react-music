@@ -10,8 +10,8 @@ export default () => (
 	<Route path="/" component={Index}>
 		<IndexRoute component={Home} />
 		<Route path="search" component={Search} />
-		<Route path="songdetail/:songId" component={SongDetail} />
-		<Route path="playlistDetail/:playlistId" component={PlaylistDetail} />
+		<Route path="song/:songId" component={SongDetail} />
+		<Route path="playlist/:playlistId" component={PlaylistDetail} />
 		<Redirect from="*" to="/" />
 	</Route>
 )

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import actions from 'actions/songDetail'
 import Lyric from 'components/Lyric'
 import Comments from 'components/Comments'
+import '../assets/style/playlistDetail.styl'
 
 @connect(
 	state => state.songDetail,
@@ -29,22 +30,33 @@ class SongDetail extends Component {
 		this.setState({
 			songId: this.props.params.songId
 		}, () => {
-			this.props.getSonginfo(`/getsonginfo/${this.props.params.songId}/`)
+			this.props.songInfos({})
+			this.props.getSongInfo(`/getsonginfo/${this.props.params.songId}/`)
 		})
 	}
 
 	render() {
-		if (this.props.songInfos.code) {
+		const {songinfos} = this.props.songDetail
+		if (songinfos.comments && songinfos.lyrs.lrc) {
 			return (
-				<div className='loading'>加载中...</div>
+				<div className='wrapper detailWrap'>
+					<div className="pl-dec">
+						<div className="pl-img">
+							<img src={songinfos.album.picUrl} alt={songinfos.name} />
+						</div>
+						<div className="detail-info">
+							<h3>{songinfos.name} - {songinfos.artists[0].name}</h3>
+							<div className="song-lyric">
+								<Lyric lyric={songinfos.lyrs.lrc.lyric} />
+							</div>
+						</div>
+					</div>
+					<Comments comments={songinfos.comments} />
+				</div>
 			)
 		}
-		const songInfo = this.props.songInfos
 		return (
-			<div className='detailWrap'>
-				<Lyric lyric={songInfo.lyrs.lrc.lyric} />
-				<Comments comments={songInfo.comments} />
-			</div>
+			<div className='wrapper loading'>加载中...</div>
 		)
 	}
 }
