@@ -101,14 +101,16 @@ class Player extends Component {
 	togglePlay() {
 		const audio = ReactDOM.findDOMNode(this.refs.audio)
 		if (this.props.playerData.playerList.length !== 0 && audio.paused) {
-			audio.play()
 			this.setState({
 				playerState: true
+			}, () => {
+				audio.play()
 			})
 		} else {
-			audio.pause()
 			this.setState({
 				playerState: false
+			}, () => {
+				audio.pause()
 			})
 		}
 		this.setState({
