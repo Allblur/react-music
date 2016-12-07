@@ -4,6 +4,7 @@ import SearchResultSong from './SearchResultSong'
 import SearchResultAlbum from './SearchResultAlbum'
 import SearchResultPlaylist from './SearchResultPlaylist'
 import Pagination from './Pagination'
+import Loading from 'components/Loading'
 
 class SearchResult extends Component {
 	constructor(props) {
@@ -51,7 +52,7 @@ class SearchResult extends Component {
 			if (list.length === 0) {
 				return (
 					<li className="sr-error">
-						<p>加载中...</p>
+						<Loading />
 					</li>
 				)
 			} else {

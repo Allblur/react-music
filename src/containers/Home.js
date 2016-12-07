@@ -117,6 +117,7 @@ class Home extends Component {
 	}
 
 	toggleCategory(name) {
+		if (name === this.state.activeCategoryName) return false
 		this.setState({
 			activeCategoryName: name
 		}, () => {
@@ -144,7 +145,7 @@ class Home extends Component {
 		const plArr = this.props.topPlaylistData.list instanceof Array ? this.props.topPlaylistData.list : []
 		const playlistId = this.props.playerData.playerList.length > 0 ? (+this.props.playerData.playerList[0].playlistId) : 0
 		if (plArr.length === 0) {
-			return [1,2,3].map((elem, key) => {
+			return ([1,2,3]).map((elem, key) => {
 				return (
 					<li className="loading mtpx30 playlist-card" key={key}>
 						<div className="waiting">

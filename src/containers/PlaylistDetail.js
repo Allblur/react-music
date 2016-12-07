@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router'
 import { connect } from 'react-redux'
 import actions from 'actions/playlistDetail'
 import PlaylistItem from 'components/PlaylistItem'
+import Loading from 'components/Loading'
 import { tsnumb } from '../utils/utils'
 import '../assets/style/playlistDetail.styl'
 
@@ -101,7 +102,9 @@ class PlaylistDetail extends Component {
 		}
 
 		return (
-			<div className='wrapper detailWrap'><div className='loading'>正在加载中...</div></div>
+			<div className='wrapper detailWrap'>
+				<Loading />
+			</div>
 		)
 	}
 }

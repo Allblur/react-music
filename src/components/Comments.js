@@ -18,9 +18,17 @@ class Comments extends Component {
 		}
 		return cComments.map((elem, key) => {
 			return (
-				<div className="comment-wrap" key={key}>
-					<div className="comment-item">
-					{elem.user.nickname}评论::{elem.content}
+				<div className="comment-wrap" key={`comment-${key}`}>
+					<img
+						src="http://p4.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg"
+						alt="nickname"
+						width="32"
+						height="32"
+						className="user-avt"
+					/>
+					<div className="comments-bx">
+						<div className="comments-nickname">{elem.user.nickname}</div>
+						<div className="comments-content">{elem.content}</div>
 					</div>
 				</div>
 			)
@@ -33,7 +41,7 @@ class Comments extends Component {
 		}
 
 		return (
-			<div className='loading'>comments正在加载中...</div>
+			<div className='loading'>加载中...</div>
 		)
 	}
 }

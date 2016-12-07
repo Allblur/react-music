@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import actions from 'actions/songDetail'
 import Lyric from 'components/Lyric'
 import Comments from 'components/Comments'
+import Loading from 'components/Loading'
 import '../assets/style/playlistDetail.styl'
 
 @connect(
@@ -56,7 +57,9 @@ class SongDetail extends Component {
 			)
 		}
 		return (
-			<div className='wrapper loading'>加载中...</div>
+			<div className='wrapper detailWrap'>
+				<Loading />
+			</div>
 		)
 	}
 }
