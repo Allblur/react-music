@@ -22,8 +22,6 @@ class Comments extends Component {
 					<img
 						src="http://p4.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg"
 						alt="nickname"
-						width="32"
-						height="32"
 						className="user-avt"
 					/>
 					<div className="comments-bx">
