@@ -11,8 +11,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --env=build",
-    "start": "node server.js --env=dev",
-    "start:build": "node server.js --env=build",
+    "dev": "node server.js --env=dev",
+    "start": "node server.js --env=build",
     "test": "npm run lint && jest --config config/jest/base.json --watch --onlyChanged --no-cache",
     "test:coverage": "npm run lint && jest --config config/jest/coverage.json",
     "codecov": "codecov"
@@ -57,6 +57,7 @@
     "postcss": "^5.1.2",
     "postcss-loader": "^0.11.1",
     "react": "^15.3.1",
+    "react-custom-scrollbars": "^4.0.0",
     "react-dom": "^15.3.1",
     "react-hot-loader": "^3.0.0-beta.3",
     "react-redux": "^4.4.5",

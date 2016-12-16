@@ -21,7 +21,7 @@ class SearchResultItems extends Component {
 									<i className="iconfont icon-paused"></i>
 								</span>
 								<span className="playlist-name">
-									<a onClick={this.toDetailPage.bind(this,`/song/${v.id}`)}>{v.name}</a>
+									<a onClick={this.toDetailPage.bind(this,`/song/${v.id}`)}>{v.name} - {v.artists[0].name}</a>
 								</span>
 								<span className="album-name">{v.album.name}</span>
 								<span className="song-duration">{mstime(v.duration)}</span>

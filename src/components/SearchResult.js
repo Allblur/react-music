@@ -60,7 +60,7 @@ class SearchResult extends Component {
 					case '1':
 						return (
 							<SearchResultSong
-								paginationData={list.slice(0, 20)}
+								paginationData={list}
 								setlist={setlist}
 								setindex={setindex}
 								setmodel={setmodel}

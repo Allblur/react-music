@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import Lyric from './Lyric'
+import ColoredScrollbars from './ColoredScrollbars'
 import { mstime } from '../utils/utils'
 import '../assets/style/player.styl'
 
@@ -265,6 +266,11 @@ class Player extends Component {
 		return `iconfont icon-${playerStatus}`
 	}
 
+	actionScrollbarsPosition(val) {
+        const { scrollbarsSonglist } = this.refs
+        scrollbarsSonglist.scrollTop(val)
+    }
+
 	renderPlayer() {
 		const { playerList, playerIndex } = this.props.playerData
 		const style = {
@@ -284,15 +290,19 @@ class Player extends Component {
 						</div>
 						<div className="player-info">
 							<div className="player-song-list">
-								<ul>
-									{this.renderSonglist(playerList)}
-								</ul>
+								<ColoredScrollbars ref="scrollbarsSonglist" style={{ width: 600, height: 240 }}>
+									<ul>
+										{this.renderSonglist(playerList)}
+									</ul>
+								</ColoredScrollbars>
 							</div>
 							<div className="player-lyric">
-								<Lyric
-									currentTime={this.state.currentTime}
-									lyric={this.state.lyric} 
-								/>
+								<ColoredScrollbars ref="scrollbarsLyric" style={{ width: 360, height: 240 }}>
+									<Lyric
+										currentTime={this.state.currentTime}
+										lyric={this.state.lyric} 
+									/>
+								</ColoredScrollbars>
 							</div>
 						</div>
 					</div>
