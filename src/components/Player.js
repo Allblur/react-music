@@ -37,7 +37,7 @@ class Player extends Component {
 
 	componentDidMount() {
 		const audio = ReactDOM.findDOMNode(this.refs.audio)
-		document.addEventListener('keydown',this.actionKeyDown,false)
+		document.addEventListener('keydown', this.actionKeyDown, false)
 		audio.addEventListener('loadedmetadata', this.actionLoadedmetadata, false)
 		audio.addEventListener('timeupdate', this.actionTimeupdate, false)
 		audio.addEventListener('ended', this.actionEnded, false)
@@ -46,7 +46,7 @@ class Player extends Component {
 
 	componentWillUnmount() {
 		const audio = ReactDOM.findDOMNode(this.refs.audio)
-		document.removeEventListener('keydown',this.actionKeyDown,false)
+		document.removeEventListener('keydown', this.actionKeyDown, false)
 		audio.removeEventListener('loadedmetadata', this.actionLoadedmetadata, false)
 		audio.removeEventListener('timeupdate', this.actionTimeupdate, false)
 		audio.removeEventListener('ended', this.actionEnded, false)
