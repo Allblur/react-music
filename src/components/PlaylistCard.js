@@ -30,7 +30,7 @@ class PlaylistCard extends Component {
 	}
 
 	render() {
-		const { coverImgUrl, name, description, playCount, subscribedCount, shareCount, tags, id } = this.props
+		const {coverImgUrl, name, description, playCount, subscribedCount, shareCount, tags, id, playlistId} = this.props
 		return (
 			<li className="mtpx30 playlist-card">
 				<div className="card-main">
@@ -39,8 +39,8 @@ class PlaylistCard extends Component {
 							<img src={coverImgUrl} alt={name}/>
 						</span>
 						<PlayIcon
-							id={this.props.id}
-							playlistId={this.props.playlistId}
+							id={id}
+							playlistId={playlistId}
 							actionClick={this.playThatPlaylist}
 						/>
 					</div>

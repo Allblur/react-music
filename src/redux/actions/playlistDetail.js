@@ -20,9 +20,9 @@ export default {
 	setlist,
 	setindex,
 	setmodel,
-	getPlayerlistInfo(url,args) {
+	getPlayerlistInfo(url, args) {
 		return dispatch => {
-			return fetchApi(url,args).then(json => dispatch(playlistDetail(json)))
+			return fetchApi(url, args).then(json => dispatch(playlistDetail(json)))
 		}
 	}
 }

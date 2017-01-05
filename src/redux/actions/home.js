@@ -21,9 +21,9 @@ export default {
 			return fetchApi(url, args).then(json => dispatch(topplaylist(json)))
 		}
 	},
-	getPlayerlist(url,args) {
+	getPlayerlist(url, args) {
 		return dispatch => {
-			return fetchApi(url,args).then(json => dispatch(setlist(json)))
+			return fetchApi(url, args).then(json => dispatch(setlist(json)))
 		}
 	}
 }

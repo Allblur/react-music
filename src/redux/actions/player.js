@@ -23,9 +23,9 @@ export default {
 	getlyric,
 	songInfo,
 	comments,
-	getPlayerlist(url,args) {
+	getPlayerlist(url, args) {
 		return dispatch => {
-			return fetchApi(url,args).then(json => dispatch(setlist(json)))
+			return fetchApi(url, args).then(json => dispatch(setlist(json)))
 		}
 	},
 	getSongLyric(url) {
@@ -34,7 +34,7 @@ export default {
 		}
 	},
 	getJsondata(url) {
-		return dispatch => {
+		return () => {
 			return fetchApi(url).then(json => Promise.resolve(json))
 		}
 	},

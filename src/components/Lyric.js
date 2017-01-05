@@ -11,18 +11,18 @@ class Lyric extends Component {
 		super(props)
 	}
 
-    getNowPosition(arr, currentTime) {
-    	if (!currentTime) return null
-    	let nowPosition = 0
-        for (let i = 0, j = arr.length; i < j; i++) {
-            if (arr[i].time >= currentTime || arr[i].time === '') {
-                nowPosition = i - 1
-                return nowPosition
-            }
-        }
-        nowPosition = arr.length - 1
-        return nowPosition
-    }
+	getNowPosition(arr, currentTime) {
+		if (!currentTime) return null
+		let nowPosition = 0
+		for (let i = 0, j = arr.length; i < j; i++) {
+			if (arr[i].time >= currentTime || arr[i].time === '') {
+				nowPosition = i - 1
+				return nowPosition
+			}
+		}
+		nowPosition = arr.length - 1
+		return nowPosition
+	}
 
 	renderLrc() {
 		const lyric = this.props.lyric ? this.props.lyric : '没有歌词\n'

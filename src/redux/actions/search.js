@@ -46,7 +46,7 @@ export default {
 		}
 	},
 	getJsondata(url, args) {
-		return dispatch => {
+		return () => {
 			return fetchApi(url, args).then(json => Promise.resolve(json))
 		}
 	}

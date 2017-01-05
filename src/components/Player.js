@@ -58,24 +58,24 @@ class Player extends Component {
 	}
 
 	actionMouseClick(e) {
-	    e.preventDefault()
-	    e.stopPropagation()
+		e.preventDefault()
+		e.stopPropagation()
 	}
 
 	actionKeyDown(e) {
-	    const keyCode = e.keyCode || e.which
-	    const isInsideInput = e.target.tagName.toLowerCase().match(/input|textarea/)
-	    if (isInsideInput) {
-	      	return false
-	    }
-	    e.preventDefault()
-	    if (keyCode === 32) {
-	      	this.togglePlay()
-	    } else if (keyCode === 37 || keyCode === 74) {
-	      	this.actionPrev()
-	    } else if (keyCode === 39 || keyCode === 75) {
-	      	this.actionNext()
-	    }
+		const keyCode = e.keyCode || e.which
+		const isInsideInput = e.target.tagName.toLowerCase().match(/input|textarea/)
+		if (isInsideInput) {
+		  	return false
+		}
+		e.preventDefault()
+		if (keyCode === 32) {
+		  	this.togglePlay()
+		} else if (keyCode === 37 || keyCode === 74) {
+		  	this.actionPrev()
+		} else if (keyCode === 39 || keyCode === 75) {
+		  	this.actionNext()
+		}
 	}
 
 	setStime() {
@@ -249,8 +249,8 @@ class Player extends Component {
 		const url = `/getlyric/${songId}/`
 		this.props.getJsondata(url).then((d) => {
 			this.setState({
-	        	lyric: d.lrc ? d.lrc.lyric : ''
-	        })
+				lyric: d.lrc ? d.lrc.lyric : ''
+			})
 		})
 	}
 
@@ -267,9 +267,9 @@ class Player extends Component {
 	}
 
 	actionScrollbarsPosition(val) {
-        const { scrollbarsSonglist } = this.refs
-        scrollbarsSonglist.scrollTop(val)
-    }
+		const { scrollbarsSonglist } = this.refs
+		scrollbarsSonglist.scrollTop(val)
+	}
 
 	renderPlayer() {
 		const { playerList, playerIndex } = this.props.playerData
