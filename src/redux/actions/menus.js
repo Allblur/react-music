@@ -3,8 +3,8 @@ import { createActions } from 'redux-actions'
 export const QUERY_MENU_LIST = 'QUERY_MENU_LIST'
 
 const menuSetting = [{
-	path: '/playlist',
-	name: 'playlist',
+	path: '/playlists',
+	name: 'playlists',
 	label: '歌单'
 }, {
 	path: '/fm',

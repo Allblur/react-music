@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from 'actions/home'
 import PlaylistCard from 'components/PlaylistCard'
+import Slide from 'components/Slide'
 
 @connect(
 	state => ({
@@ -181,8 +182,18 @@ class Home extends Component {
 	}
 
 	render() {
+		const opts = [{
+			src: 'http://p3.music.126.net/AwqCSHxSkryqKzz82-h7nw==/109951162859760120.jpg'
+		},{
+			src: 'http://p3.music.126.net/SG4fqv-Ky45apsgqDvZbCA==/109951162862859702.jpg'
+		},{
+			src: 'http://p3.music.126.net/ReRkyVpcqeKCzxTVUvENAg==/109951162857949886.jpg'
+		}]
+		const baseWidth = 1000
+		
 		return (
 			<div className='pab65 wrapper'>
+				<Slide opts={opts} baseWidth={baseWidth} />
 				<div className="playlist-category">
 					<ul>
 						{this.renderActegory()}
