@@ -193,7 +193,6 @@ class Home extends Component {
 		
 		return (
 			<div className='pab65 wrapper'>
-				<Slide opts={opts} baseWidth={baseWidth} />
 				<div className="playlist-category">
 					<ul>
 						{this.renderActegory()}
