@@ -7,7 +7,9 @@ const {
 	setmodel,
 	getlyric,
 	songInfo,
-	comments
+	comments,
+	addsong,
+	getplayerlistlength
 } = createActions(
 	PLAYER_TYPES.SETLIST,
 	PLAYER_TYPES.SETINDEX,
@@ -15,6 +17,8 @@ const {
 	PLAYER_TYPES.GETLYRIC,
 	PLAYER_TYPES.SONG_INFO,
 	PLAYER_TYPES.COMMENTS,
+	PLAYER_TYPES.ADDSONG,
+	PLAYER_TYPES.GETPLAYERLISTLENGTH
 )
 export default {
 	setlist,
@@ -23,6 +27,8 @@ export default {
 	getlyric,
 	songInfo,
 	comments,
+	addsong,
+	getplayerlistlength,
 	getPlayerlist(url, args) {
 		return dispatch => {
 			return fetchApi(url, args).then(json => dispatch(setlist(json)))

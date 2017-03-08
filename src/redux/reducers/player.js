@@ -6,6 +6,13 @@ const reducer = handleActions({
 		playerData: Object.assign({},state.playerData,{playerList: action.payload.list ? action.payload.list : action.payload})
 	}),
 
+	[PLAYER_TYPES.ADDSONG]: (state, action) => {
+		state.playerData.playerList.unshift(action.payload)
+		return {
+			playerData: Object.assign({},state.playerData)
+		}
+	},
+
 	[PLAYER_TYPES.SETINDEX]: (state, action) => ({
 		playerData: Object.assign({},state.playerData,{playerIndex: action.payload})
 	}),
@@ -20,6 +27,9 @@ const reducer = handleActions({
 
 	[PLAYER_TYPES.COMMENTS]: (state, action) => ({
 		playerData: Object.assign({},state.playerData,{comments: action.payload})
+	}),
+	[PLAYER_TYPES.GETPLAYERLISTLENGTH]: (state, action) => ({
+		playerData: Object.assign({},state.playerData,{playerListLength: state.playerData.length})
 	})
 }, {
 	playerData: Object.assign({},{ playerIndex: 0, playerModel: 'loop', playerList:[], lyric:'', comments:'' })

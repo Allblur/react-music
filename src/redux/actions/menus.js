@@ -1,16 +1,9 @@
 import { createActions } from 'redux-actions'
+import menuQuery from './menuQuery'
 
 export const QUERY_MENU_LIST = 'QUERY_MENU_LIST'
 
-const menuSetting = [{
-	path: '/playlists',
-	name: 'playlists',
-	label: '歌单'
-}, {
-	path: '/fm',
-	name: 'FM',
-	label: 'FM'
-}]
+const menuSetting = menuQuery
 const { queryMenuList } = createActions({
 	[QUERY_MENU_LIST]: () => Promise.resolve(menuSetting)
 })

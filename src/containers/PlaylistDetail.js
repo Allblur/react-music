@@ -40,16 +40,11 @@ class PlaylistDetail extends Component {
 			return lists.map((elem, key) => {
 				return (
 					<PlaylistItem
-						picUrl={elem.album.picUrl}
-						name={elem.name}
-						artName={elem.artists[0].name}
-						playlistId={Number(elem.playlistId)}
-						albumName={elem.album.name}
-						duration={elem.duration}
-						id={elem.id}
+						songData={elem}
 						setindex={this.props.setindex}
 						setlist={this.props.setlist}
-						key={elem.id}
+						addsong={this.props.addsong}
+						key={key}
 					/>
 				)
 			})

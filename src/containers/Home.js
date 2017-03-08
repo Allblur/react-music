@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import actions from 'actions/home'
 import PlaylistCard from 'components/PlaylistCard'
 import Slide from 'components/Slide'
+import categoryArr from './categoryArr'
 
 @connect(
 	state => ({
@@ -15,99 +16,7 @@ class Home extends Component {
 	constructor(props) {
 		super(props),
 		this.state = {
-			playlistCategory: [
-				{
-					name: '全部',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '华语',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '流行',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '摇滚',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '舞曲',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '朋克',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '民谣',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '吉他',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '钢琴',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '小语种',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '清晨',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '旅行',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '怀旧',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '安静',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '清新',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '经典',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '影视原声',
-					offset: 15,
-					limit: 15,
-					params: {}
-				},{
-					name: '电影',
-					offset: 15,
-					limit: 15,
-					params: {}
-				}
-			],
+			playlistCategory: categoryArr,
 			activeCategoryName: '全部'
 		}
 	}

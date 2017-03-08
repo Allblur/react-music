@@ -13,6 +13,8 @@ const {
 	setlist,
 	setindex,
 	setmodel,
+	addsong,
+	getplayerlistlength
 } = player
 
 export default {
@@ -20,6 +22,8 @@ export default {
 	setlist,
 	setindex,
 	setmodel,
+	addsong,
+	getplayerlistlength,
 	getPlayerlistInfo(url, args) {
 		return dispatch => {
 			return fetchApi(url, args).then(json => dispatch(playlistDetail(json)))

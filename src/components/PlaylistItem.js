@@ -3,24 +3,28 @@ import { mstime } from '../utils/utils'
 
 class PlaylistItem extends Component {
 	static propTypes = {
-		picUrl: PropTypes.string.isRequired,
-		name: PropTypes.string.isRequired,
-		artName: PropTypes.string.isRequired,
-		playlistId: PropTypes.number.isRequired,
-		id: PropTypes.number.isRequired,
-		duration: PropTypes.number.isRequired
 	}
 
 	constructor(props) {
 		super(props)
+		this.toPlay = this.toPlay.bind(this)
+	}
+
+	toPlay() {
+		this.props.addsong(this.props.songData)
+		setTimeout(() => {
+			this.props.setindex(0)
+		},500)
 	}
 
 	render() {
-		const {picUrl, name, artName, playlistId, albumName, duration, id} = this.props
+		const {picUrl, name, albumName, duration, id} = this.props.songData
+		const playlistId = Number(this.props.songData.playlistId)
+		const artName = this.props.songData.artists[0].name
 		return (
 			<li className='playlist-info'>
 				<div className="p-info">
-					<span className="span p-play" id={id}>播放</span>
+					<span className="span p-play" id={id} onClick={this.toPlay}>播放</span>
 					<span className="span p-name">{name} - {artName}</span>
 					<span className="span p-albumName">{albumName}</span>
 					<span className="span p-duration">{mstime(duration)}</span>
