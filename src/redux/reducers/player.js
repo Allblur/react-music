@@ -7,7 +7,9 @@ const reducer = handleActions({
 	}),
 
 	[PLAYER_TYPES.ADDSONG]: (state, action) => {
-		state.playerData.playerList.unshift(action.payload)
+		if (state.playerData.playerList.every((item, index, arr) => item.id !== action.payload.id)) {
+			state.playerData.playerList.unshift(action.payload)
+		}
 		return {
 			playerData: Object.assign({},state.playerData)
 		}

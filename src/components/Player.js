@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import Lyric from './Lyric'
 import ColoredScrollbars from './ColoredScrollbars'
 import { mstime } from '../utils/utils'
 import '../assets/style/player.styl'
 
-class Player extends Component {
+class Player extends PureComponent {
 
 	constructor(props) {
 		super(props)
@@ -56,6 +56,16 @@ class Player extends Component {
 	componentDidUpdate() {
 		//componentDidUpdate
 	}
+	
+	/*shouldComponentUpdate(nextProps, nextState) {
+		for (let i in nextProps) {
+			console.info("nextProps=>>"+i)
+		}
+		for (let ii in nextState) {
+			console.log("nextState=>>"+ii)
+		}
+		return true
+	}*/
 
 	actionMouseClick(e) {
 		e.preventDefault()

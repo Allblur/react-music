@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import ReactDOM from 'react-dom'
 
 class SearchForm extends Component {
 	static propTypes = {
@@ -24,7 +23,7 @@ class SearchForm extends Component {
 	}
 
 	actionGoSearch() {
-		const kw = ReactDOM.findDOMNode(this.refs.searchKeywords).value
+		const kw = this.searchKeywords.value
 		const t = localStorage.getItem("searchType") || 2
 		if (kw === '') return false
 		this.props.push(`/search?kw=${kw}&t=${t}`)
@@ -43,7 +42,7 @@ class SearchForm extends Component {
 				<div className="search-wrap">
 					<input type="text"
 						defaultValue={this.props.val ? this.props.val : ''}
-						ref="searchKeywords" placeholder="单曲/歌手/专辑/歌单"
+						ref={(skw) => this.searchKeywords = skw} placeholder="单曲/歌手/专辑/歌单"
 					/>
 					<span className="search-btn" onClick={this.actionGoSearch}>搜索</span>
 				</div>

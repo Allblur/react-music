@@ -8,7 +8,10 @@ import { tsnumb } from '../utils/utils'
 import '../assets/style/playlistDetail.styl'
 
 @connect(
-	state => state.playlistDetail,
+	state => ({
+		...state.playlistDetail,
+		...state.player
+	}),
 	actions
 )
 class PlaylistDetail extends Component {
