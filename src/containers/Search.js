@@ -19,7 +19,7 @@ class Search extends Component {
 		const res = {list: []}
 		localStorage.setItem("searchType", t)
 		this.props.searchResult(res)
-		this.props.history.push(`/search?kw=${kw}&t=${t}`)
+		this.props.history.push(`/music/search?kw=${kw}&t=${t}`)
 	}
 	renderStype() {
 		const type = [

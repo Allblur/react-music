@@ -231,7 +231,7 @@ class Player extends PureComponent {
 	}
 
 	toSongdetailPage(songId) {
-		this.props.history.push(`/song/${songId}`)
+		this.props.history.push(`/music/song/${songId}`)
 	}
 
 	renderSonglist(playerList) {

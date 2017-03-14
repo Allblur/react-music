@@ -21,7 +21,7 @@ class SearchResultItems extends Component {
 									<i className="iconfont icon-paused"></i>
 								</span>
 								<span className="playlist-name">
-									<a onClick={this.toDetailPage.bind(this,`/song/${v.id}`)}>{v.name} - {v.artists[0].name}</a>
+									<a onClick={this.toDetailPage.bind(this,`/music/song/${v.id}`)}>{v.name} - {v.artists[0].name}</a>
 								</span>
 								<span className="album-name">{v.album.name}</span>
 								<span className="song-duration">{mstime(v.duration)}</span>
@@ -41,7 +41,7 @@ class SearchResultItems extends Component {
 							</span>
 							<span className="cover-imgurl"><img src={v.coverImgUrl} alt="歌单封面" width="60" /></span>
 							<span className="playlist-name">
-								<a onClick={this.toDetailPage.bind(this,`/playlist/${v.id}`)}>{v.name}</a>
+								<a onClick={this.toDetailPage.bind(this,`/music/playlist/${v.id}`)}>{v.name}</a>
 							</span>
 							<span className="playlist-trackcount">{v.trackCount}首</span>
 							<span className="creator-name">by&nbsp;&nbsp;<i>{v.creator.nickname}</i></span>

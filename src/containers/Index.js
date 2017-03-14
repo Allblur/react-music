@@ -18,7 +18,7 @@ import searchActions from 'actions/search'
 			(list = [], pathname) => list.length === 0 ? '' : list.filter(item => item.path === pathname).length > 0 ? pathname : list[0].path
 		)(state)
 	}), {
-		actionGoHome: () => push('/'),
+		actionGoHome: () => push('/music'),
 		queryMenuList: menuActions.queryMenuList,
 		getPlayerlist: playerActions.getPlayerlist,
 		setlist: playerActions.setlist,

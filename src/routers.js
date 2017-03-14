@@ -17,13 +17,13 @@ function requireAuth(nextState, replaceState) {
 }
 
 export default () => (
-	<Route path="/" component={Index}>
+	<Route path="/music" component={Index}>
 		<IndexRoute component={Home} />
-		<Route path="signIn" component={Home} />
-		<Route path="search" component={Search} />
-		<Route path="song/:songId" component={SongDetail} />
-		<Route path="playlist/:playlistId" component={PlaylistDetail} />
-		<Route onEnter={requireAuth} path="playlists" component={PlaylistDetail} />
-		<Redirect from="*" to="/" />
+		<Route path="/music/signIn" component={Home} />
+		<Route path="/music/search" component={Search} />
+		<Route path="/music/song/:songId" component={SongDetail} />
+		<Route path="/music/playlist/:playlistId" component={PlaylistDetail} />
+		<Route onEnter={requireAuth} path="/music/playlists" component={PlaylistDetail} />
+		<Redirect from="*" to="/music" />
 	</Route>
 )

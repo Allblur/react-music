@@ -25,5 +25,5 @@ app.listen(PORT, err => {
 	err && console.log(err)
 	console.log('Listening at localhost:' + PORT)
 	console.log('Opening your system browser...')
-	open('http://localhost:' + PORT)
+	open('http://localhost:' + PORT+'/music')
 })

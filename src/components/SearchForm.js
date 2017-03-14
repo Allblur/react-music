@@ -26,7 +26,7 @@ class SearchForm extends Component {
 		const kw = this.searchKeywords.value
 		const t = localStorage.getItem("searchType") || 2
 		if (kw === '') return false
-		this.props.push(`/search?kw=${kw}&t=${t}`)
+		this.props.push(`/music/search?kw=${kw}&t=${t}`)
 	}
 
 	actionKeyDown(e) {

@@ -84,11 +84,6 @@ const categoryArr = [
 		offset: 15,
 		limit: 15,
 		params: {}
-	},{
-		name: '电影',
-		offset: 15,
-		limit: 15,
-		params: {}
 	}
 ]
 

@@ -37,7 +37,7 @@ class Home extends Component {
 	}
 
 	actionLink(id) {
-		const url = `/playlist/${id}`
+		const url = `/music/playlist/${id}`
 		this.props.history.push(url)
 	}
 
